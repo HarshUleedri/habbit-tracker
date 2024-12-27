@@ -1,25 +1,41 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import useDropdown from "../../../Hooks/useDropdown";
+import { useDispatch } from "react-redux";
+import { addHabit } from "../../../app/features/habits/habits";
+import { useSelector } from "react-redux";
 
 const CreateHabit = () => {
+  //accessing habits data from redux store
+  const habits = useSelector((state) => state.habits);
+
+  // useDispatch hook to dispatch actions
+  const dispatch = useDispatch();
+
+  // list of dropdown items
   const items = ["One Week", "Two Weeks", "Three Weeks", "Four Weeks"];
+
+  // error for form validation
   const [error, setError] = useState("");
+
+  // holds form data
   const [formData, setFormData] = useState({
     habit: "",
     duration: "",
   });
 
+  // holds habits data
+  // const [habits, setHabit] = useState(() => {
+  //   return JSON.parse(localStorage.getItem("habits")) || [];
+  // });
+  // custom hook for dropdown menu
   const { element, seletctedItem, setSeletctedItem } = useDropdown(items);
 
-  const [habits, setHabit] = useState(() => {
-    return JSON.parse(localStorage.getItem("habits")) || [];
-  });
+  // useEffect to store data in local storage
+  // useEffect(() => {
+  //   localStorage.setItem("habits", JSON.stringify(habits));
+  // }, [habits]);
 
-  useEffect(() => {
-    localStorage.setItem("habits", JSON.stringify(habits));
-  }),
-    [habits];
-
+  // handle change function for form data
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -28,16 +44,24 @@ const CreateHabit = () => {
     }));
   };
 
+  // handle submit function for form data
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!formData.habit || !seletctedItem) {
       setError("please fill all the fields");
       return;
     }
-    setHabit((prev) => [
+    // setHabit((prev) => [
+    //   ...prev,
+    //   { habits: formData.habit, duration: seletctedItem },
+    // ]);
+    setFormData((prev) => ({
       ...prev,
-      { habits: formData.habit, duration: seletctedItem },
-    ]);
+      duration: seletctedItem,
+    }));
+
+    // dispatching action to add habit
+    dispatch(addHabit(formData));
     setFormData({
       habit: "",
       duration: "",
@@ -61,21 +85,15 @@ const CreateHabit = () => {
           <label className="text-lg text-zinc-300">Select Duration </label>
           <div name="Duration" className="mt-2 mb-8">
             {element}
-            {habits.map((habit, index) => (
-              <div key={index} className="flex justify-between">
-                <p className="text-lg text-zinc-300">{habit.habits}</p>
-                <p className="text-lg text-zinc-300">{habit.duration}</p>
-              </div>
-            ))}
           </div>
           {error && <p className="text-base text-red-600">{error}</p>}
           <button className="w-full px-4 py-2 bg-blue-950" type="submit">
             Add Habit
           </button>
         </form>
-        {habits.map((habit, index) => (
-          <div key={index} className="flex justify-between bg-zinc-800">
-            <p className="text-lg text-zinc-300">{habit.habits}</p>
+        {habits.map((habit) => (
+          <div key={habit.id} className="flex justify-between bg-zinc-800">
+            <p className="text-lg text-zinc-300">{habit.habit}</p>
             <p className="text-lg text-zinc-300">{habit.duration}</p>
           </div>
         ))}
