@@ -2,12 +2,8 @@ import { useState } from "react";
 import useDropdown from "../../../Hooks/useDropdown";
 import { useDispatch } from "react-redux";
 import { addHabit } from "../../../app/features/habits/habits";
-import { useSelector } from "react-redux";
 
 const CreateHabit = () => {
-  //accessing habits data from redux store
-  const habits = useSelector((state) => state.habits);
-
   // useDispatch hook to dispatch actions
   const dispatch = useDispatch();
 
@@ -62,11 +58,17 @@ const CreateHabit = () => {
 
     // dispatching action to add habit
     dispatch(addHabit(formData));
+
+    // reset form data
     setFormData({
       habit: "",
       duration: "",
     });
+
+    // reset dropdown
     setSeletctedItem("");
+
+    // reset error
     setError("");
   };
 
@@ -91,12 +93,6 @@ const CreateHabit = () => {
             Add Habit
           </button>
         </form>
-        {habits.map((habit) => (
-          <div key={habit.id} className="flex justify-between bg-zinc-800">
-            <p className="text-lg text-zinc-300">{habit.habit}</p>
-            <p className="text-lg text-zinc-300">{habit.duration}</p>
-          </div>
-        ))}
       </div>
     </>
   );
