@@ -30,7 +30,7 @@ const HabitCard = (props) => {
             onClick={() => dispatch(removeHabit(habit.id))}
             className="px-4 py-1 rounded-sm bg-red-950 hover:bg-red-600 hover:text-white text-zinc-300"
           >
-            Delete {habit.id}
+            Delete
           </button>
           {progressBar}
           <button
