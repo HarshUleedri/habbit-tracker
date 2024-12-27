@@ -2,15 +2,27 @@ import { useDispatch } from "react-redux";
 import useProgressBar from "../../../Hooks/useProgressBar";
 import { removeHabit } from "../../../app/features/habits/habits";
 
+// it takes habit as props and returns a card with habit details
+
 const HabitCard = (props) => {
   // useDispatch hook to dispatch actions
   const dispatch = useDispatch();
+
+  const dateAccordingDuration = {
+    "one week": 7,
+    "two weeks": 14,
+    "three weeks": 21,
+    "four weeks": 28,
+  };
+
   // get habit from props
   const { habit } = props;
 
+  const duration = dateAccordingDuration[habit.duration.toLowerCase()];
+
   // custom hook for progress bar to show progress of habit completion and update progress bar on click of complete button
   const { updateProgressBar, progressBar, currentProgress } = useProgressBar(
-    7,
+    duration,
     habit.id
   );
 

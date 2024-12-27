@@ -19,17 +19,13 @@ const CreateHabit = () => {
     duration: "",
   });
 
-  // holds habits data
-  // const [habits, setHabit] = useState(() => {
-  //   return JSON.parse(localStorage.getItem("habits")) || [];
-  // });
   // custom hook for dropdown menu
   const { element, seletctedItem, setSeletctedItem } = useDropdown(items);
 
-  // useEffect to store data in local storage
-  // useEffect(() => {
-  //   localStorage.setItem("habits", JSON.stringify(habits));
-  // }, [habits]);
+  // setFormData((prev) => ({
+  //   ...prev,
+  //   duration: seletctedItem,
+  // }));
 
   // handle change function for form data
   const handleChange = (e) => {
@@ -51,13 +47,12 @@ const CreateHabit = () => {
     //   ...prev,
     //   { habits: formData.habit, duration: seletctedItem },
     // ]);
-    setFormData((prev) => ({
-      ...prev,
-      duration: seletctedItem,
-    }));
 
-    // dispatching action to add habit
-    dispatch(addHabit(formData));
+    const updatedFormData = {
+      ...formData,
+      duration: seletctedItem,
+    };
+    dispatch(addHabit(updatedFormData));
 
     // reset form data
     setFormData({
