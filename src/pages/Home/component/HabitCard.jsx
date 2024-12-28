@@ -21,10 +21,8 @@ const HabitCard = (props) => {
   const duration = dateAccordingDuration[habit.duration.toLowerCase()];
 
   // custom hook for progress bar to show progress of habit completion and update progress bar on click of complete button
-  const { updateProgressBar, progressBar, currentProgress } = useProgressBar(
-    duration,
-    habit.id
-  );
+  const { updateProgressBar, progressBar, currentProgress, isClicked } =
+    useProgressBar(duration, habit.id);
 
   // set current progress in the local storage on every update of progress bar
   localStorage.setItem(`${habit.id}`, currentProgress);
@@ -45,12 +43,22 @@ const HabitCard = (props) => {
             Delete
           </button>
           {progressBar}
-          <button
-            className="px-4 py-1 rounded-sm bg-green-950 hover:bg-green-600 hover:text-white text-zinc-300"
-            onClick={updateProgressBar}
-          >
-            completed
-          </button>
+
+          {isClicked ? (
+            <button
+              className="px-4 py-1 rounded-sm bg-zinc-900 text-zinc-300"
+              onClick={updateProgressBar}
+            >
+              today task is done
+            </button>
+          ) : (
+            <button
+              className="px-4 py-1 rounded-sm bg-green-950 hover:bg-green-600 hover:text-white text-zinc-300"
+              onClick={updateProgressBar}
+            >
+              Click if completed
+            </button>
+          )}
         </div>
       </div>
     </>

@@ -6,7 +6,7 @@ const ProgressBar = (props) => {
     <>
       <div className="relative w-full h-2 rounded-full bg-zinc-500">
         <span
-          className={` absolute inset-0 rounded-full bg-green-800 h-2`}
+          className={` absolute inset-0 rounded-full bg-green-600 h-2`}
           style={{ width: `${progress}%` }}
         ></span>
       </div>
