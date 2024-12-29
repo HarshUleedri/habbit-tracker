@@ -71,13 +71,13 @@ const CreateHabit = () => {
     <>
       <div className="w-full p-4 bg-zinc-800">
         <form onSubmit={handleSubmit}>
-          <label className="text-lg text-zinc-300">Enter Habbi Name </label>
+          <label className="text-lg text-zinc-300">Enter Habit Name </label>
           <input
             name="habit"
             value={formData.habit}
             onChange={handleChange}
             placeholder=". . . ."
-            className="w-full px-6 py-1 mb-6 text-xl text-zinc-800 focus:outline-none focus:ring-1 focus:ring-zinc-700 bg-zinc-900"
+            className="w-full px-6 py-1 mb-6 text-xl text-zinc-300 focus:outline-none focus:ring-1 focus:ring-zinc-700 bg-zinc-900"
             type="text"
           />
           <label className="text-lg text-zinc-300">Select Duration </label>
