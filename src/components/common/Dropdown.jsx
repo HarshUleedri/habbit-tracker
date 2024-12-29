@@ -27,18 +27,18 @@ const Dropdown = ({
   return (
     <div className="relative" ref={dropdownRef}>
       <button
-        className="w-full px-4 py-2 border rounded-sm text-zinc-300 border-zinc-600 bg-zinc-900"
+        className="w-full px-4 py-2 border rounded-sm text-zinc-300 border-zinc-700 bg-zinc-900"
         onClick={toggleDropdown}
         type="button"
       >
         {selectedValue === "" ? "Menu" : selectedValue}
       </button>
       {isOpen && (
-        <ul className="absolute divide-y rounded-sm text-zinc-300 bg-zinc-800 divide-solid divide-zinc-600">
+        <ul className="absolute w-full divide-y rounded-sm text-zinc-300 bg-zinc-800 divide-solid divide-zinc-600">
           {items.map((value, index) => (
             <li key={index}>
               <button
-                className="px-2 py-2 hover:bg-zinc-600"
+                className="w-full px-2 py-2 hover:bg-zinc-600"
                 value={value}
                 onClick={isSelected}
               >

@@ -69,14 +69,15 @@ const CreateHabit = () => {
 
   return (
     <>
-      <div className="w-1/2 p-4 bg-zinc-700">
+      <div className="w-full p-4 bg-zinc-800">
         <form onSubmit={handleSubmit}>
           <label className="text-lg text-zinc-300">Enter Habbi Name </label>
           <input
             name="habit"
             value={formData.habit}
             onChange={handleChange}
-            className="w-full p-1 mb-8 text-xl text-zinc-800"
+            placeholder=". . . ."
+            className="w-full px-6 py-1 mb-6 text-xl text-zinc-800 focus:outline-none focus:ring-1 focus:ring-zinc-700 bg-zinc-900"
             type="text"
           />
           <label className="text-lg text-zinc-300">Select Duration </label>

@@ -36,6 +36,7 @@ const habitsSlice = createSlice({
         id: nanoid(),
         habit: action.payload.habit,
         duration: action.payload.duration,
+        createdAt: new Date(),
       };
       state.habits.push(habit);
       setData(state);
