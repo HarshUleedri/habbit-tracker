@@ -42,6 +42,7 @@ const HabitCard = (props) => {
             strokeWidth={1.5}
             stroke="currentColor"
             className="size-5 hover:text-red-800"
+            onClick={() => dispatch(removeHabit(habit.id))}
           >
             <path
               strokeLinecap="round"
