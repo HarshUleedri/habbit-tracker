@@ -3,7 +3,6 @@ import HabitCard from "./component/HabitCard";
 import CreateHabit from "./component/CreateHabit";
 const Home = () => {
   const habits = useSelector((state) => state.habits);
-  console.log(habits);
   return (
     <>
       <div
